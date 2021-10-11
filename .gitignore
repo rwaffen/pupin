@@ -1,0 +1,7 @@
+.terraform/
+.terraform.lock.hcl
+*.auto.tfvars
+*.tfstate
+*.tfstate.backup
+.rerun.json
+bolt-debug.log
