@@ -26,7 +26,15 @@ See `inventory.yaml`. There are some targets, which should be already deployed v
 bolt command run whoami -t puppetserver
 ```
 
-# Install components
+# Install components with plans
+
+```
+bolt plan run bootstrap::all
+# includes
+# bolt plan run bootstrap::puppetserver
+# bolt plan run bootstrap::puppetca
+```
+# Install components with tasks
 
 ## Install Puppet Agent (latest)
 
