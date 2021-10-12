@@ -29,10 +29,11 @@ bolt command run whoami -t puppetserver
 # Install components with plans
 
 ```
+# without externel ca
 bolt plan run bootstrap::all
-# includes
-# bolt plan run bootstrap::puppetserver
-# bolt plan run bootstrap::puppetca
+
+# with externel ca
+bolt plan run bootstrap::all external_ca=true
 ```
 # Install components with tasks
 
