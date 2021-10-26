@@ -1,0 +1,11 @@
+{
+  "puppet_task_version": 1,
+  "supports_noop": false,
+  "description": "Set hostname",
+  "parameters": {
+    "host": {
+      "description": "Hostname",
+      "type": "String"
+    }
+  }
+}
