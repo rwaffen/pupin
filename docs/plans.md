@@ -19,11 +19,3 @@ Set hostnames
 ```
 bolt plan run bootstrap::set_hostname
 ```
-
-Available plans
-
-```
-bolt plan run bootstrap::puppetca
-bolt plan run bootstrap::puppetconf
-bolt plan run bootstrap::puppetserver
-```

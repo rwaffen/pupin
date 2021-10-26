@@ -21,31 +21,15 @@ This is a bolt standard task
 bolt task run puppet_agent::install --targets puppet
 ```
 
-## Install Puppetserver
+## Set hostname
 
-Use task from tasks/ directory to install puppetserver with puppet
-
-```
-bolt task run bootstrap::puppetserver --targets puppetserver
-```
-
-## Install PuppetCA
-
-Use task from tasks/ directory to install puppetca with puppet
+Set hostname via hostnamectl
 
 ```
-bolt task run bootstrap::puppetca --targets puppetca
+bolt task run bootstrap::set_hostname --targets 'puppetserver' host='puppetserver'
 ```
 
-## Install PuppetDB
-
-Use task from tasks/ directory to install puppetdb with puppet
-
-```
-bolt task run bootstrap::puppetdb --targets puppetca
-```
-
-# Tear down
+## Tear down
 
 This is a bolt standard task, which uses the terraform manifests from `../terraform` directory.
 
