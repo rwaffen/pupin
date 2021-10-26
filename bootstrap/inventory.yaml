@@ -3,16 +3,16 @@
 groups:
   - name: puppet
     targets:
-      - uri: puppet.public.example42.cloud
+      - uri: puppet.pub.rw.example42.cloud
         name: puppetserver
 
-      - uri: puppetdb.public.example42.cloud
+      - uri: puppetdb.pub.rw.example42.cloud
         name: puppetdb
 
-      - uri: puppetca.public.example42.cloud
+      - uri: puppetca.pub.rw.example42.cloud
         name: puppetca
 
-      - uri: agent01.public.example42.cloud
+      - uri: agent01.pub.rw.example42.cloud
         name: agent01
 
 config:

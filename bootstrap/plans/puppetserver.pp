@@ -1,14 +1,19 @@
 plan bootstrap::puppetserver (
   TargetSpec $targets = 'puppetserver',
-  Boolean $is_also_ca = true,
 ){
-  if $is_also_ca {
-    $ca = 'puppetlabs.services.ca.certificate-authority-service/certificate-authority-service'
-  } else {
-    $ca = 'puppetlabs.services.ca.certificate-authority-disabled-service/certificate-authority-disabled-service'
-  }
-
+  $ca    = 'puppetlabs.services.ca.certificate-authority-disabled-service/certificate-authority-disabled-service'
   $watch = 'puppetlabs.trapperkeeper.services.watcher.filesystem-watch-service/filesystem-watch-service'
+
+  run_task('puppet_conf', $targets, "Setting: ${setting}",
+  {
+    'action'  => 'set',
+    'section' => 'agent',
+    'setting' => 'server',
+    'value'   => 'puppetca.private.example42.cloud',
+    }
+  )
+
+  run_task('puppet', $targets)
 
   apply($targets) {
     package { 'puppetserver':

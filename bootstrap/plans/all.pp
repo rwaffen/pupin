@@ -1,20 +1,14 @@
 plan bootstrap::all (
-  Boolean $external_ca = false,
+  TargetSpec $targets = ['puppet', 'puppetdb', 'puppetca', 'agent01'],
 ){
-  if $external_ca {
-    $targets = 'puppetserver, puppetca'
-  } else {
-    $targets = 'puppetserver'
-  }
-
   # prepare puppet agent
   run_task('puppet_agent::install', $targets)
-  run_plan('bootstrap::puppetconf', $targets, { 'external_ca' => $external_ca })
 
-  if $external_ca {
-    run_plan('bootstrap::puppetserver', 'puppetserver', { 'is_also_ca' => false })
-    run_plan('bootstrap::puppetca', 'puppetca')
-  } else {
-    run_plan('bootstrap::puppetserver', 'puppetserver', { 'is_also_ca' => true })
-  }
+  #set hostname
+  $targets.each |$target| { run_task('bootstrap::set_hostname', $target) }
+
+  # run_plan('bootstrap::puppetconf', $targets)
+
+  run_plan('bootstrap::puppetca', 'puppetca')
+  run_plan('bootstrap::puppetserver', 'puppetserver')
 }

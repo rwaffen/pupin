@@ -39,7 +39,7 @@ resource "hcloud_server" "nodes" {
 resource "hetznerdns_record" "private_addresses" {
     for_each = var.machines
     zone_id = data.hetznerdns_zone.dns_zone.id
-    name = "${each.key}.private"
+    name = "${each.key}.priv.rw"
     value = each.value.ip
     type = "A"
     ttl= 60
@@ -48,7 +48,7 @@ resource "hetznerdns_record" "private_addresses" {
 resource "hetznerdns_record" "public_addresses" {
     for_each = var.machines
     zone_id = data.hetznerdns_zone.dns_zone.id
-    name = "${each.key}.public"
+    name = "${each.key}.pub.rw"
     value = hcloud_server.nodes[each.key].ipv4_address
     type = "A"
     ttl= 60
