@@ -1,4 +1,4 @@
-plan bootstrap::puppetserver (
+plan bootstrap::puppetserver_01 (
   TargetSpec $targets = 'puppetserver',
 ){
   run_task('package', $targets, { 'action' => 'install', 'name' => 'puppetserver' })
@@ -8,6 +8,7 @@ plan bootstrap::puppetserver (
     'puppetlabs.trapperkeeper.services.watcher.filesystem-watch-service/filesystem-watch-service',
   ]
 
+  # set server to ca for first run to get certificates
   $puppet_conf =  {
     'certname'      => 'puppet.priv.rw.example42.cloud',
     'server'        => 'puppetca.priv.rw.example42.cloud',
@@ -26,6 +27,7 @@ plan bootstrap::puppetserver (
     )
   }
 
+  # disable ca on server, we use an external ca
   apply($targets) {
     file { '/etc/puppetlabs/puppetserver/services.d/ca.cfg':
       ensure  => file,
@@ -33,8 +35,10 @@ plan bootstrap::puppetserver (
     }
   }
 
+  # run puppet to get certificates
   run_plan('puppet_agent::run', 'puppetserver')
 
+  # switch puppet conf to oneself
   run_task('puppet_conf', $targets,
   {
     'action'  => 'set',

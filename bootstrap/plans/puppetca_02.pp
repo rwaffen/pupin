@@ -1,6 +1,7 @@
 plan bootstrap::puppetca_02 (
   TargetSpec $targets = 'puppetca',
 ){
+  # disable allow-subject-alt-name again
   apply($targets) {
     $ca_conf = [
       'certificate-authority: {',
@@ -16,6 +17,7 @@ plan bootstrap::puppetca_02 (
     }
   }
 
+  # switch puppet conf to final server settings
   $puppet_conf =  {
     'certname'      => 'puppetca.priv.rw.example42.cloud',
     'server'        => 'puppet.priv.rw.example42.cloud',

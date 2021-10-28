@@ -17,11 +17,13 @@ resource "hcloud_network_subnet" "subnet" {
   type         = "server"
   network_zone = "eu-central"
   ip_range     = "10.0.8.0/24"
+
+  depends_on = [hcloud_network.network]
 }
 
 resource "hcloud_server" "nodes" {
   for_each    = var.machines
-  name        = each.key
+  name        = "${each.key}.priv.rw.example42.cloud"
   image       = each.value.image
   server_type = each.value.server_type
   ssh_keys    = data.hcloud_ssh_keys.all_keys.ssh_keys.*.name

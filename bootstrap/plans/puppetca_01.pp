@@ -3,6 +3,7 @@ plan bootstrap::puppetca_01 (
 ){
   run_task('package', $targets, { 'action' => 'install', 'name' => 'puppetserver' })
 
+  # allow allow-subject-alt-name for the setup, will be disabled later
   apply($targets) {
     $ca_conf = [
       'certificate-authority: {',
@@ -18,6 +19,7 @@ plan bootstrap::puppetca_01 (
     }
   }
 
+  # set server to one self for the first run
   run_task('puppet_conf', $targets,
     {
       'action'  => 'set',
@@ -27,6 +29,7 @@ plan bootstrap::puppetca_01 (
     }
   )
 
+  # allow autosign for the setup
   run_task('puppet_conf', $targets,
     {
       'action'  => 'set',

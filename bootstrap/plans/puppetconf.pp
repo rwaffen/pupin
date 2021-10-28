@@ -6,8 +6,8 @@ plan bootstrap::puppetconf (
     'splay'              => 'true',
     'use_cached_catalog' => 'false',
     'usecacheonfailure'  => 'false',
-    'server'             => 'puppet.private.example42.cloud',
-    'ca_server'          => 'puppetca.private.example42.cloud'
+    'server'             => 'puppet.priv.rw.example42.cloud',
+    'ca_server'          => 'puppetca.priv.rw.example42.cloud'
   }
 
   $puppet_conf.each |$setting, $value| {
