@@ -1,3 +1,4 @@
+# This plan is a part of bootstrap::all and represents the second steps for the puppetca
 plan bootstrap::puppetca_02 (
   TargetSpec $targets = 'puppetca',
 ){

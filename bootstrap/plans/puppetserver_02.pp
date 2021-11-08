@@ -1,3 +1,4 @@
+# This plan is a part of bootstrap::all and represents the second steps for the puppetserver
 plan bootstrap::puppetserver_02 (
   TargetSpec $targets = 'puppetserver',
 ){

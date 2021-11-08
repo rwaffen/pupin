@@ -1,3 +1,4 @@
+# This plan is a part of bootstrap::all and represents the steps for the puppetdb
 plan bootstrap::puppetdb_01 (
   TargetSpec $targets = 'puppetdb',
 ){

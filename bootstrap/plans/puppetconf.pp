@@ -1,3 +1,4 @@
+# This plan is a part of bootstrap::all and is used to configure the puppet agent
 plan bootstrap::puppetconf (
   TargetSpec $targets,
 ){

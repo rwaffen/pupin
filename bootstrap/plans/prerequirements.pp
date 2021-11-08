@@ -1,3 +1,4 @@
+# This plan is a part of bootstrap::all and represents the steps which are pre required to run
 plan bootstrap::prerequirements (
   TargetSpec $targets   = 'puppet',
   String $collection    = 'puppet7',
