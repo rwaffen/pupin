@@ -7,18 +7,18 @@ plan bootstrap::puppetdb_01 (
 
   # set puppet conf
   $puppet_conf =  {
-    'certname'      => 'puppetdb.priv.rw.example42.cloud',
-    'server'        => 'puppet.priv.rw.example42.cloud',
-    'ca_server'     => 'puppetca.priv.rw.example42.cloud',
+    certname      => 'puppetdb.priv.rw.example42.cloud',
+    server        => 'puppet.priv.rw.example42.cloud',
+    ca_server     => 'puppetca.priv.rw.example42.cloud',
   }
 
   $puppet_conf.each |$setting, $value| {
     run_task('puppet_conf', $targets, "Setting: ${setting}",
-    {
-      'action'  => 'set',
-      'section' => 'agent',
-      'setting' => $setting,
-      'value'   => $value,
+      {
+        action  => 'set',
+        section => 'agent',
+        setting => $setting,
+        value   => $value,
       }
     )
   }
