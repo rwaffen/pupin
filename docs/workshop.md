@@ -116,6 +116,13 @@ ssh agent01.pub.rw.example42.cloud -l root
 puppet config set --section agent certname  agent01.priv.rw.example42.cloud
 puppet config set --section agent server    puppet.priv.rw.example42.cloud
 puppet config set --section agent ca_server puppetca.priv.rw.example42.cloud
+
+# add role via csr
+
+echo "---" > /etc/puppetlabs/puppet/csr_attributes.yaml
+echo "extension_requests:" >> /etc/puppetlabs/puppet/csr_attributes.yaml
+echo '  pp_role: "role::something"' >> /etc/puppetlabs/puppet/csr_attributes.yaml
+
 puppet agent -t --waitforcert 10
 
 # run on PuppetCA
